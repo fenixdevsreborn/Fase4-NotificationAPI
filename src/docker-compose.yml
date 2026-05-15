@@ -1,0 +1,36 @@
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: gamestore-rabbitmq
+    restart: unless-stopped
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  notifications-worker:
+    build:
+      context: ..
+      dockerfile: src/Dockerfile
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    environment:
+      RABBITMQ_HOST: rabbitmq
+      QUEUE_USER_CREATED: user-created-event
+      QUEUE_PAYMENT_PROCESSED: payment-processed-event
+      MT_LICENSE: Community
+    volumes:
+      - ./Logs:/app/Logs
+
+volumes:
+  rabbitmq_data:

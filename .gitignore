@@ -20,6 +20,7 @@ x86/
 bld/
 [Bb]in/
 [Oo]bj/
+[Oo]ut/
 [Ll]og/
 [Ll]ogs/
 
@@ -31,13 +32,12 @@ artifacts/
 # ASP.NET Scaffolding
 ScaffoldingReadMe.txt
 
+**/NotificationAPI/src/Logs/logs/*
+!**/NotificationAPI/src/logs/.gitkeep
 # NuGet Packages
 *.nupkg
 # NuGet Symbol Packages
 *.snupkg
-
-# dotenv environment variables file
-.env
 
 # Others
 ~$*
@@ -55,3 +55,6 @@ CodeCoverage/
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+
+.vs/
+src/.vs/

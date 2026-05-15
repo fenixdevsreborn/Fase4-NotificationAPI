@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: notifications-config
+  namespace: gamestore
+data:
+  RABBITMQ_HOST: rabbitmq
+  RABBITMQ_USERNAME: guest
+  QUEUE_USER_CREATED: user-created-event
+  QUEUE_PAYMENT_PROCESSED: payment-processed-event
