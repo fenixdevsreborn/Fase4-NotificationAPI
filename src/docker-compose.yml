@@ -1,14 +1,16 @@
+name: fase4-notificationsapi
+
 services:
   rabbitmq:
-    image: rabbitmq:3-management
-    container_name: gamestore-rabbitmq
-    restart: unless-stopped
+    image: rabbitmq:3.12-management-alpine
+    container_name: fiap-rabbitmq
     ports:
       - "5672:5672"
       - "15672:15672"
     environment:
-      RABBITMQ_DEFAULT_USER: guest
-      RABBITMQ_DEFAULT_PASS: guest
+      RABBITMQ_DEFAULT_USER: "${RABBITMQ_USERNAME:?RABBITMQ_USERNAME is required}"
+      RABBITMQ_DEFAULT_PASS: "${RABBITMQ_PASSWORD:?RABBITMQ_PASSWORD is required}"
+      RABBITMQ_DEFAULT_VHOST: fiap
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
     healthcheck:
@@ -16,21 +18,36 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    networks:
+      - ms-network
 
   notifications-worker:
     build:
       context: ..
       dockerfile: src/Dockerfile
+    container_name: fiap-notifications-worker
     depends_on:
       rabbitmq:
         condition: service_healthy
     environment:
       RabbitMq__Host: rabbitmq
-      RabbitMq__UserCreatedQueueName: user-created-event
-      QUEUE_PAYMENT_PROCESSED: payment-processed-event
+      RabbitMq__Port: "5672"
+      RabbitMq__Username: "${RABBITMQ_USERNAME:?RABBITMQ_USERNAME is required}"
+      RabbitMq__Password: "${RABBITMQ_PASSWORD:?RABBITMQ_PASSWORD is required}"
+      RabbitMq__VirtualHost: fiap
+      RabbitMq__ExchangeName: fiap.events
+      RabbitMq__NotificationQueueName: notification-queue
       MT_LICENSE: Community
     volumes:
       - ./Logs:/app/Logs
+    networks:
+      - ms-network
 
 volumes:
   rabbitmq_data:
+    name: fiap-rabbitmq-data
+
+networks:
+  ms-network:
+    name: fiap-ms-network
+    driver: bridge

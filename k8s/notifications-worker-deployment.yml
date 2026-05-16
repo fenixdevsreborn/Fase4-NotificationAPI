@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: notifications-worker
-  namespace: gamestore
+  namespace: fase4
 spec:
   replicas: 1
   strategy:
@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: notifications-worker
-          image: 123456789012.dkr.ecr.us-east-1.amazonaws.com/notifications-worker:latest
+          image: docker.io/adinteltidev/notifications-worker:latest
           imagePullPolicy: Always
           resources:
             requests:
@@ -32,5 +32,19 @@ spec:
           envFrom:
             - configMapRef:
                 name: notifications-config
-            - secretRef:
-                name: notifications-secret
+          env:
+            - name: RabbitMq__Username
+              valueFrom:
+                secretKeyRef:
+                  name: rabbitmq-secrets
+                  key: rabbitmq-user
+            - name: RabbitMq__Password
+              valueFrom:
+                secretKeyRef:
+                  name: rabbitmq-secrets
+                  key: rabbitmq-pass
+            - name: RabbitMq__VirtualHost
+              valueFrom:
+                secretKeyRef:
+                  name: rabbitmq-secrets
+                  key: rabbitmq-vhost

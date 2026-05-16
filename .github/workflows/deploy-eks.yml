@@ -15,8 +15,8 @@ permissions:
 env:
   AWS_REGION: us-east-1
   DOCKERHUB_REPOSITORY: notifications-worker
-  EKS_CLUSTER_NAME: gamestore-eks
-  K8S_NAMESPACE: gamestore
+  EKS_CLUSTER_NAME: fcg-fase4
+  K8S_NAMESPACE: fase4
   K8S_DEPLOYMENT_NAME: notifications-worker
   K8S_CONTAINER_NAME: notifications-worker
 

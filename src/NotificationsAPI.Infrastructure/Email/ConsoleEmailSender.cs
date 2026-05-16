@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-using NotificationsAPI.Application.Ports;
+using Microsoft.Extensions.Logging;
 
 namespace NotificationsAPI.Infrastructure.Email;
 
@@ -15,11 +14,10 @@ public class ConsoleEmailSender : IEmailSender
     public Task SendAsync(string to, string subject, string body)
     {
         _logger.LogInformation(
-            "📧 Email enviado para {To} | Assunto: {Subject} | Conteúdo: {Body}",
+            "Email sent to {To} | Subject: {Subject} | Body: {Body}",
             to,
             subject,
-            body
-        );
+            body);
 
         return Task.CompletedTask;
     }

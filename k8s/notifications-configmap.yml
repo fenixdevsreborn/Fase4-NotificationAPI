@@ -2,9 +2,9 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: notifications-config
-  namespace: gamestore
+  namespace: fase4
 data:
   RabbitMq__Host: rabbitmq
-  RabbitMq__Username: guest
-  RabbitMq__UserCreatedQueueName: user-created-event
-  QUEUE_PAYMENT_PROCESSED: payment-processed-event
+  RabbitMq__Port: "5672"
+  RabbitMq__ExchangeName: fiap.events
+  RabbitMq__NotificationQueueName: notification-queue

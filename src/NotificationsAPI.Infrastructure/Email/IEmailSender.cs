@@ -1,4 +1,4 @@
-﻿namespace NotificationsAPI.Application.Ports;
+namespace NotificationsAPI.Infrastructure.Email;
 
 public interface IEmailSender
 {
