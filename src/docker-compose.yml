@@ -25,8 +25,8 @@ services:
       rabbitmq:
         condition: service_healthy
     environment:
-      RABBITMQ_HOST: rabbitmq
-      QUEUE_USER_CREATED: user-created-event
+      RabbitMq__Host: rabbitmq
+      RabbitMq__UserCreatedQueueName: user-created-event
       QUEUE_PAYMENT_PROCESSED: payment-processed-event
       MT_LICENSE: Community
     volumes:

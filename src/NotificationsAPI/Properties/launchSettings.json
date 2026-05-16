@@ -6,7 +6,8 @@
       "dotnetRunMessages": true,
       "environmentVariables": {
         "DOTNET_ENVIRONMENT": "Development",
-        "QUEUE_USER_CREATED": "user-created-event",
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "RabbitMq__UserCreatedQueueName": "user-created-event",
         "QUEUE_PAYMENT_PROCESSED": "payment-processed-event"
       }
     }
