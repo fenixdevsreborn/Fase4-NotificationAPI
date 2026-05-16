@@ -22,6 +22,7 @@ services:
       - ms-network
 
   notifications-worker:
+    image: adinteltidev/fase4-notifications-api:latest
     build:
       context: ..
       dockerfile: src/Dockerfile

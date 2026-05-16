@@ -10,7 +10,7 @@ permissions:
   contents: read
 
 env:
-  DOCKERHUB_REPOSITORY: notifications-worker
+  DOCKERHUB_REPOSITORY: fase4-notifications-api
 
 jobs:
   test:

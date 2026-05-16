@@ -14,7 +14,7 @@ permissions:
 
 env:
   AWS_REGION: us-east-1
-  DOCKERHUB_REPOSITORY: notifications-worker
+  DOCKERHUB_REPOSITORY: fase4-notifications-api
   EKS_CLUSTER_NAME: fcg-fase4
   K8S_NAMESPACE: fase4
   K8S_DEPLOYMENT_NAME: notifications-worker

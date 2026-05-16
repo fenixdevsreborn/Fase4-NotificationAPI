@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: notifications-worker
-          image: docker.io/adinteltidev/notifications-worker:latest
+          image: docker.io/adinteltidev/fase4-notifications-api:latest
           imagePullPolicy: Always
           resources:
             requests:
