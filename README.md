@@ -128,9 +128,9 @@ Configure as variáveis de ambiente dos componentes a seguir para rodar em qualq
 
 | Variável                           | Descrição                               |
 | ---------------------------------- | --------------------------------------- |
-| `RABBITMQ_HOST`                    | Host do broker RabbitMQ                 |
+| `RabbitMq__Host`                    | Host do broker RabbitMQ                 |
 | `RABBITMQ_EXCHANGE_NOTIFICATIONS`  | Exchange para eventos de notificação    |
-| `RABBITMQ_QUEUE_USER_CREATED`      | Fila de eventos de usuário criado       |
+| `RABBITMQ_RabbitMq__UserCreatedQueueName`      | Fila de eventos de usuário criado       |
 | `RABBITMQ_QUEUE_PAYMENT_PROCESSED` | Fila de eventos de pagamento processado |
 | `ASPNETCORE_ENVIRONMENT`           | Ambiente (.NET)                         |
 
@@ -140,8 +140,8 @@ Configure as variáveis de ambiente dos componentes a seguir para rodar em qualq
 
 | Variável                | Descrição                                             |
 | ----------------------- | ----------------------------------------------------- |
-| `RABBITMQ_USERNAME`     | Usuário para autenticação no RabbitMQ                 |
-| `RABBITMQ_PASSWORD`     | Senha para autenticação no RabbitMQ                   |
+| `RabbitMq__Username`     | Usuário para autenticação no RabbitMQ                 |
+| `RabbitMq__Password`     | Senha para autenticação no RabbitMQ                   |
 | `EMAIL_SERVICE_API_KEY` | Chave de API do provedor de e-mail (quando aplicável) |
 | `SMS_SERVICE_API_KEY`   | Chave de API do provedor de SMS (quando aplicável)    |
 
@@ -180,7 +180,7 @@ Configure as variáveis de ambiente dos componentes a seguir para rodar em qualq
 2. Execute com variáveis de ambiente:
 
    ```bash
-   docker run -e RABBITMQ_HOST=... -e RABBITMQ_USERNAME=... -e RABBITMQ_PASSWORD=... notifications-api
+   docker run -e RabbitMq__Host=... -e RabbitMq__Username=... -e RabbitMq__Password=... notifications-api
    ```
 
 ---

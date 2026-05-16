@@ -7,7 +7,7 @@ public static class QueueSettingsFactory
         return new QueueSettings
         {
             UserCreatedQueue =
-                Environment.GetEnvironmentVariable("QUEUE_USER_CREATED")
+                Environment.GetEnvironmentVariable("RabbitMq__UserCreatedQueueName")
                 ?? "fcg.notifications.user-created",
 
             PaymentProcessedQueue =

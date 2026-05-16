@@ -46,24 +46,24 @@ builder.Services.AddMassTransit(x =>
     x.UsingRabbitMq((context, cfg) =>
     {
         cfg.Host(
-            Environment.GetEnvironmentVariable("RABBITMQ_HOST") ?? "localhost",
-            Environment.GetEnvironmentVariable("RABBITMQ_VHOST") ?? "/",
+            Environment.GetEnvironmentVariable("RabbitMq__Host") ?? "localhost",
+            Environment.GetEnvironmentVariable("RabbitMq__VirtualHost") ?? "/",
             h =>
             {
                 h.Username(
-                    Environment.GetEnvironmentVariable("RABBITMQ_USERNAME") ?? "guest");
+                    Environment.GetEnvironmentVariable("RabbitMq__Username") ?? "admin");
                 h.Password(
-                    Environment.GetEnvironmentVariable("RABBITMQ_PASSWORD") ?? "guest");
+                    Environment.GetEnvironmentVariable("RabbitMq__Password") ?? "admin123");
             });
 
         var userNotificationQueue =
-            Environment.GetEnvironmentVariable("QUEUE_USER_CREATED")
+            Environment.GetEnvironmentVariable("RabbitMq__UserCreatedQueueName")
             ?? "notification-queue";
         var userNotificationExchange =
-            Environment.GetEnvironmentVariable("USERS_EVENTS_EXCHANGE")
+            Environment.GetEnvironmentVariable("RabbitMq__ExchangeName")
             ?? "fiap.events";
         var userNotificationRoutingKey =
-            Environment.GetEnvironmentVariable("USERS_EVENTS_ROUTING_KEY")
+            Environment.GetEnvironmentVariable("RabbitMq__NotificationQueueName")
             ?? "notification-queue";
 
         cfg.ReceiveEndpoint(userNotificationQueue, e =>
